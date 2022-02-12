@@ -152,8 +152,11 @@ namespace MY_WINDOWS_FORM_SHORTCUT
 			{
 				System.Windows.Forms.Button button = sender as System.Windows.Forms.Button;
 
+				string typeName = 
+					button.Name.Replace("Button", string.Empty).Trim();
+
 				var form =
-					(System.Windows.Forms.Form)System.Activator.CreateInstance(System.Type.GetType(GetType().Namespace+"."+button.Name.Replace("Button", string.Empty).Trim()));
+					(System.Windows.Forms.Form)System.Activator.CreateInstance(System.Type.GetType("Side_Forms." + typeName));
 
 				form.ShowDialog();
 			}
@@ -161,7 +164,6 @@ namespace MY_WINDOWS_FORM_SHORTCUT
 			{
 				System.Windows.Forms.MessageBox.Show($"{ex.Message}");
 			}
-			
 		}
 
 		/// <summary>
